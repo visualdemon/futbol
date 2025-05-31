@@ -1,44 +1,95 @@
-# ⚽ Fútbol Jueves - App de Registro de Asistentes para Partidos Semanales
 
-¡Bienvenido a la app definitiva para organizar partidos de fútbol entre amigos!  
-Este pequeño sistema te permite gestionar las confirmaciones de asistencia para tus partidos de los jueves. Con un máximo de 12 cupos, alertas dinámicas y efectos visuales, nunca más tendrás que adivinar quién va a jugar.
+# 🎯 Registro de Asistencia para Partidos de Fútbol - Jueves 9PM
 
-![screenshot](https://your-screenshot-url.com) <!-- opcional: puedes subir una captura del sistema -->
+Sistema ligero en PHP para gestionar cupos limitados de asistentes a los partidos semanales. Ideal para grupos de amigos que juegan regularmente y quieren evitar el caos del WhatsApp. 😅
 
 ---
 
-## 🚀 Características
+## 🎥 Demo
 
-✅ Registro limitado a los días permitidos (martes a jueves antes de las 9:00 p.m.)  
-✅ Alerta visual cuando se completa el cupo  
-✅ Control manual de apertura/cierre del registro  
-✅ Lista dinámica de asistentes  
-✅ Efecto de confeti cuando alguien se registra 🎉  
-✅ Sin base de datos compleja ni frameworks innecesarios  
-✅ Ideal para equipos de barrio, amigos, clubes deportivos o entrenadores
+> ✅ Confirma tu asistencia  
+> 🎉 Avisa cuando el cupo esté completo  
+> 📋 Muestra titulares y suplentes automáticamente  
+> 🔄 Botón para actualizar la lista al instante
 
 ---
 
-## 🧠 ¿Cómo funciona?
+## 📦 Funcionalidades clave
 
-1. Los jugadores ingresan su nombre para confirmar asistencia.
-2. El sistema permite máximo 12 personas (10 titulares + 2 suplentes).
-3. Cuando se llena el cupo, el formulario desaparece y se muestra un mensaje de éxito.
-4. Puedes activar o desactivar el registro manualmente en el archivo `config/registro_manual.txt`.
-
----
-
-## 🛠️ Requisitos
-
-- PHP 7.4 o superior
-- Servidor local (como XAMPP, Laragon, MAMP, etc.)
-- Navegador moderno
-- Opcional: MySQL si deseas extender funcionalidades
+🟢 Registro habilitado automáticamente de martes a jueves antes de las 9PM  
+🔐 Opción para activar el registro manual desde un archivo de texto  
+📆 Control de fechas con soporte para el “próximo jueves”  
+✅ Alerta visual y confetti al confirmar  
+⚽ Cupo máximo de 12 jugadores (10 titulares + 2 suplentes)  
+📱 Diseño responsivo para móviles  
 
 ---
 
 ## 🧪 Instalación local
 
 ```bash
-git clone https://github.com/visualdemon/futbol.git
+git clone https://github.com/visualdmeon/futbol.git
 cd futbol
+```
+
+1. Abre la carpeta en tu servidor local (`/public` debe ser el punto de entrada).
+2. Asegúrate de que el archivo `config/registro_manual.txt` exista.
+3. Crea la base de datos y tabla:
+
+```sql
+CREATE TABLE asistentes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    fecha_partido DATE NOT NULL
+);
+```
+
+---
+
+## 🗂️ Estructura del proyecto
+
+```
+📁 futbol-jueves/
+ ├── 📁 public/
+ │    ├── index.php
+ │    ├── scripts.js
+ │    ├── styles.css
+ ├── 📁 includes/
+ │    ├── db.php
+ │    └── helpers.php
+ ├── 📁 config/
+ │    └── registro_manual.txt
+```
+
+---
+
+## 💡 Posibles mejoras
+
+- 📊 Estadísticas históricas de partidos
+- 👥 Ranking por asistencia
+- 🕹️ Modo admin con gestión de temporadas
+- 📱 App móvil con notificaciones push
+
+---
+
+## 🤝 Contribuciones
+
+¿Te gustó? ¿Quieres mejorarlo?  
+¡Haz un fork, prueba cambios y lanza un Pull Request!  
+También puedes abrir un issue para ideas o reportes.
+
+---
+
+## 🧑‍💻 Autor
+
+**Wilber Jurado Guerrero**  
+👨‍💼 Ingeniero, desarrollador, apasionado por el deporte y la tecnología  
+🌐 [ingeniaestudios.com](https://ingeniaestudios.com)  
+📩 wjurado@ingeniaestudios.com
+
+---
+
+## ⭐ ¿Te gusta este proyecto?
+
+Dale una estrella ⭐ en GitHub para apoyarlo  
+¡y compártelo con tu parche de fútbol! ⚽🔥
