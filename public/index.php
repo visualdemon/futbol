@@ -34,7 +34,7 @@ if (registroHabilitadoManual()) {
 </head>
 <body>
     <main class="container">
-        <h1>Fútbol</br><?php echo $fechaBonita; ?></h1>
+        <h1>Fútbol<br><?php echo $fechaBonita; ?></h1>
 
         <div id="alertas">
             <?php
@@ -56,6 +56,12 @@ if (registroHabilitadoManual()) {
         </div>
 
         <div id="mensajeError" style="margin-top: 10px;"></div>
+
+        <!-- Spinner visual con texto -->
+        <div id="loader" style="display: none; text-align: center; margin: 15px 0;">
+            <div class="spinner" style="margin: 0 auto;"></div>
+            <p style="color: #66bb6a; font-weight: bold;">⏳ Registrando...</p>
+        </div>
 
         <?php if (!$registroPermitido): ?>
             <div class="alerta">⛔ El registro se habilita de martes a jueves antes de las 9:00 PM</div>
@@ -81,8 +87,8 @@ if (registroHabilitadoManual()) {
                 <?php endforeach; ?>
             </ul>
         </div>
-
     </main>
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="scripts.js"></script>
 </body>

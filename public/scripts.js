@@ -1,8 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector('.formulario');
+    const form = document.querySelector('.formulario');   
 
     form?.addEventListener('submit', async function (e) {
         e.preventDefault();
+
+        const loader = document.getElementById('loader');
+        const submitBtn = form.querySelector('button');
+
+        loader.style.display = 'block';         // Mostrar spinner
+        submitBtn.disabled = true;              // Desactivar botón
+        submitBtn.innerText = 'Registrando...'; // Cambiar texto del botón
+
         const formData = new FormData(form);
         const res = await fetch('registrar.php', {
             method: 'POST',
@@ -11,12 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await res.json();
 
+        loader.style.display = 'none';          // Ocultar spinner
+        submitBtn.disabled = false;             // Reactivar botón
+        submitBtn.innerText = 'Confirmar asistencia'; // Restaurar texto
+
         if (data.success) {
             await actualizarLista();
             await actualizarAlertas();
             form.reset();
             document.getElementById('mensajeError').innerHTML = '';
-            lanzarConfeti(); // 🎉 Confeti al registrar correctamente
+            lanzarConfeti();
         } else {
             document.getElementById('mensajeError').innerHTML = `
                 <div class="alerta" style="background-color: #b71c1c;">
@@ -25,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         }
     });
+
 
     window.actualizarLista = async function () {
         const res = await fetch('cargar_lista.php');
