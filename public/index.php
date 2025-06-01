@@ -66,10 +66,10 @@ if (registroHabilitadoManual()) {
         <?php if (!$registroPermitido): ?>
             <div class="alerta">⛔ El registro se habilita de martes a jueves antes de las 9:00 PM</div>
         <?php elseif ($total < 12): ?>
-            <form action="registrar.php" method="post" class="formulario">
+            <form id="registroForm" class="formulario">
                 <input type="text" name="nombre" placeholder="Tu nombre completo" required maxlength="100">
                 <input type="hidden" name="fecha" value="<?php echo $fechaPartido; ?>">
-                <button type="submit">Confirmar asistencia</button>
+                <button type="submit" id="btnRegistrar">Confirmar asistencia</button>
             </form>
         <?php endif; ?>
 
