@@ -90,6 +90,6 @@ if (registroHabilitadoManual()) {
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="scripts.js?v=2" defer></script>
 </body>
 </html>
