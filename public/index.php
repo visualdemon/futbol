@@ -73,7 +73,7 @@ if (registroHabilitadoManual()) {
             </form>
         <?php endif; ?>
 
-        <button onclick="actualizarLista(); actualizarAlertas();" style="margin: 10px auto; display:block;">
+        <button id="btnActualizarLista" style="margin: 10px auto; display:block;">
             🔄 Actualizar lista de Asistentes confirmados...
         </button>
 

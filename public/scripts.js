@@ -1,58 +1,71 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector('.formulario');   
-
-    if (!form) return;
-
     const loader = document.getElementById('loader');
     const mensajeError = document.getElementById('mensajeError');
-    const submitBtn = form.querySelector('button');
+    const btnActualizar = document.getElementById('btnActualizarLista');
 
-    form.addEventListener('submit', async function (e) {
-        e.preventDefault();
+    if (form) {
+        const submitBtn = form.querySelector('button');
 
-        // Mostrar estado visual
-        loader.style.display = 'block';
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Registrando...';
-        mensajeError.innerHTML = '';
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-        const formData = new FormData(form);
+            loader.style.display = 'block';
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Registrando...';
+            mensajeError.innerHTML = '';
 
-        try {
-            const res = await fetch('registrar.php', {
-                method: 'POST',
-                body: formData
-            });
+            const formData = new FormData(form);
 
-            const data = await res.json();
+            try {
+                const res = await fetch('registrar.php', {
+                    method: 'POST',
+                    body: formData
+                });
 
-            loader.style.display = 'none';
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Confirmar asistencia';
+                const data = await res.json();
 
-            if (data.success) {
-                form.reset();
-                await actualizarLista();
-                await actualizarAlertas();
-                lanzarConfeti();
-            } else {
+                if (data.success) {
+                    form.reset();
+                    await actualizarLista();
+                    await actualizarAlertas();
+                    lanzarConfeti();
+                } else {
+                    mensajeError.innerHTML = `
+                        <div class="alerta" style="background-color: #b71c1c;">
+                            ${data.message}
+                        </div>
+                    `;
+                }
+            } catch (err) {
                 mensajeError.innerHTML = `
                     <div class="alerta" style="background-color: #b71c1c;">
-                        ${data.message}
+                        ❌ Error inesperado. Intenta nuevamente.
                     </div>
                 `;
+            } finally {
+                loader.style.display = 'none';
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Confirmar asistencia';
             }
-        } catch (err) {
+        });
+    }
+
+    // ✅ Este bloque debe estar AFUERA del form.addEventListener
+    if (btnActualizar) {
+        btnActualizar.addEventListener('click', async () => {
+            loader.style.display = 'block';
+            btnActualizar.disabled = true;
+            btnActualizar.innerText = '🔄 Actualizando...';
+
+            await actualizarLista();
+            await actualizarAlertas();
+
             loader.style.display = 'none';
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Confirmar asistencia';
-            mensajeError.innerHTML = `
-                <div class="alerta" style="background-color: #b71c1c;">
-                    ❌ Error inesperado. Intenta nuevamente.
-                </div>
-            `;
-        }
-    });
+            btnActualizar.disabled = false;
+            btnActualizar.innerText = '🔄 Actualizar lista de Asistentes confirmados...';
+        });
+    }
 
     async function actualizarLista() {
         const res = await fetch('cargar_lista.php');
