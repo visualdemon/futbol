@@ -1,0 +1,129 @@
+@import './base.css';
+
+/* Layout base */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+}
+
+/* Contenedor principal Vue */
+#app {
+  width: 100%;
+  max-width: 1024px;
+  padding: 2rem;
+}
+
+/* Estilos generales */
+a {
+  text-decoration: none;
+  color: #0c9773;
+  transition: 0.3s;
+}
+
+a:hover {
+  background-color: rgba(12, 151, 115, 0.15);
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+/* VueCal */
+.vuecal__event {
+  font-size: 0.8rem;
+  padding: 2px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.event-oficial {
+  background-color: #16a34a;
+}
+
+.event-extra {
+  background-color: #f97316;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-box h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.modal-box p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-green {
+  background-color: #22c55e;
+  color: white;
+}
+
+.btn-orange {
+  background-color: #f97316;
+  color: white;
+}
+
+.btn-red {
+  background-color: #e11d48;
+  color: white;
+}
+
+.btn-cancel {
+  margin-top: 10px;
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Calendario centrado */
+.calendar-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
