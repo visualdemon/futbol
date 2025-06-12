@@ -2,9 +2,17 @@
 
 function proximoJueves($desde = 'now') {
     $date = new DateTime($desde);
+
+    // Si hoy es jueves y antes de las 21:00, devolver hoy
+    if ((int)$date->format('N') === 4 && (int)$date->format('H') < 21) {
+        return $date->format('Y-m-d');
+    }
+
+    // De lo contrario, el próximo jueves
     $date->modify('next Thursday');
     return $date->format('Y-m-d');
 }
+
 
 function traducirFecha($fecha) {
     $dias = [
