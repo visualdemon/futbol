@@ -43,13 +43,24 @@ a:hover {
   font-weight: bold;
 }
 
-.event-oficial {
-  background-color: #16a34a;
+.vuecal__event.evento-oficial {
+  background-color: #16a34a !important;
+  color: white !important;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
 }
 
-.event-extra {
-  background-color: #f97316;
+.vuecal__event.evento-extra {
+  background-color: #f97316 !important;
+  color: white !important;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
 }
+
 
 /* Modal */
 .modal-overlay {

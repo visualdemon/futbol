@@ -6,7 +6,14 @@
       :disable-views="['years', 'year', 'week', 'day']"
       default-view="month"
       @cell-click="handleDateClick"
-    />
+    >
+      <!-- Sobrescribe el render de cada evento -->
+      <template #event="{ event }">
+        <div class="vuecal__event">
+          {{ event.title }}
+        </div>
+      </template>
+    </vue-cal>
 
     <!-- Modal personalizado -->
     <div v-if="mostrarModal" class="modal-overlay">
@@ -23,6 +30,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -42,10 +50,22 @@ const cargarPartidos = async () => {
   partidos.value = data.map(p => ({
     start: p.fecha,
     end: p.fecha,
-    title: p.es_oficial ? '⚽ Oficial' : '🟠 Amistoso',
-    fecha: p.fecha,
-    es_oficial: p.es_oficial
+    title: p.es_oficial ? '⚽ Oficial' : '🟠 Amistoso', // Usamos title ahora
+    // content: p.es_oficial ? '⚽ Oficial' : '🟠 Amistoso', // Puedes comentar o eliminar esta línea
+    class: p.es_oficial ? 'evento-oficial' : 'evento-extra',
   }))
+
+  // Agregar eventos jugados
+  const partidosJugados = data.filter(p => p.jugado === 1)
+  partidosJugados.forEach(p => {
+    partidos.value.push({
+      start: p.fecha,
+      end: p.fecha,
+      title: 'Partido Jugado',
+      content: '✅ Jugado',
+      class: 'evento-jugado'
+    })
+  })
 }
 
 const handleDateClick = (event) => {
