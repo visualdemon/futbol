@@ -1,95 +1,61 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-# 🎯 Registro de Asistencia para Partidos de Fútbol - Jueves 9PM
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-Sistema ligero en PHP para gestionar cupos limitados de asistentes a los partidos semanales. Ideal para grupos de amigos que juegan regularmente y quieren evitar el caos del WhatsApp. 😅
+## About Laravel
 
----
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## 🎥 Demo
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-> ✅ Confirma tu asistencia  
-> 🎉 Avisa cuando el cupo esté completo  
-> 📋 Muestra titulares y suplentes automáticamente  
-> 🔄 Botón para actualizar la lista al instante
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
----
+## Learning Laravel
 
-## 📦 Funcionalidades clave
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-🟢 Registro habilitado automáticamente de martes a jueves antes de las 9PM  
-🔐 Opción para activar el registro manual desde un archivo de texto  
-📆 Control de fechas con soporte para el “próximo jueves”  
-✅ Alerta visual y confetti al confirmar  
-⚽ Cupo máximo de 12 jugadores (10 titulares + 2 suplentes)  
-📱 Diseño responsivo para móviles  
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
----
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## 🧪 Instalación local
+## Laravel Sponsors
 
-```bash
-git clone https://github.com/visualdmeon/futbol.git
-cd futbol
-```
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-1. Abre la carpeta en tu servidor local (`/public` debe ser el punto de entrada).
-2. Asegúrate de que el archivo `config/registro_manual.txt` exista.
-3. Crea la base de datos y tabla:
+### Premium Partners
 
-```sql
-CREATE TABLE asistentes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    fecha_partido DATE NOT NULL
-);
-```
+- **[Vehikl](https://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development)**
+- **[Active Logic](https://activelogic.com)**
 
----
+## Contributing
 
-## 🗂️ Estructura del proyecto
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-```
-📁 futbol-jueves/
- ├── 📁 public/
- │    ├── index.php
- │    ├── scripts.js
- │    ├── styles.css
- ├── 📁 includes/
- │    ├── db.php
- │    └── helpers.php
- ├── 📁 config/
- │    └── registro_manual.txt
-```
+## Code of Conduct
 
----
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## 💡 Posibles mejoras
+## Security Vulnerabilities
 
-- 📊 Estadísticas históricas de partidos
-- 👥 Ranking por asistencia
-- 🕹️ Modo admin con gestión de temporadas
-- 📱 App móvil con notificaciones push
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
----
+## License
 
-## 🤝 Contribuciones
-
-¿Te gustó? ¿Quieres mejorarlo?  
-¡Haz un fork, prueba cambios y lanza un Pull Request!  
-También puedes abrir un issue para ideas o reportes.
-
----
-
-## 🧑‍💻 Autor
-
-**Wilber Jurado Guerrero**  
-👨‍💼 Ingeniero, desarrollador, apasionado por el deporte y la tecnología  
-🌐 [ingeniaestudios.com](https://ingeniaestudios.com)  
-📩 wjurado@ingeniaestudios.com
-
----
-
-## ⭐ ¿Te gusta este proyecto?
-
-Dale una estrella ⭐ en GitHub para apoyarlo  
-¡y compártelo con tu parche de fútbol! ⚽🔥
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
