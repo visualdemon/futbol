@@ -1,15 +1,322 @@
 @import 'tailwindcss';
-@import './public-app.css';
-@vite(['resources/css/app.css', 'resources/js/app.js'])
 
+/* ================================
+   ESTILOS PERSONALIZADOS FÚTBOL JUEVES
+   ================================ */
 
+/* Variables CSS personalizadas */
+:root {
+  --football-primary: #22c55e;
+  --football-secondary: #3b82f6;
+  --football-accent: #f59e0b;
+  --football-danger: #ef4444;
+  --football-neutral: #6b7280;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+  --gradient-primary: linear-gradient(135deg, #1e3a8a, #1e40af);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  --gradient-button: linear-gradient(135deg, #22c55e, #16a34a);
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-elevated: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efectos glass morphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-glass);
+  border-radius: 1rem;
+  transition: var(--transition-base);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Botones personalizados */
+.btn-football {
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-button);
+  color: white;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-height: 44px;
+}
+
+.btn-football::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-football:hover::before {
+  left: 100%;
+}
+
+.btn-football:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-football:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-football:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.6;
+}
+
+/* Variantes de botones */
+.btn-secondary {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Cards de jugador */
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border-left: 4px solid;
+  transition: var(--transition-base);
+  cursor: pointer;
+  contain: layout style paint;
+}
+
+.player-card:hover {
+  transform: translateX(5px) scale(1.01);
+}
+
+.player-titular {
+  background: rgba(34, 197, 94, 0.1);
+  border-left-color: #22c55e;
+  color: #166534;
+}
+
+.player-titular:hover {
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.player-suplente {
+  background: rgba(245, 158, 11, 0.1);
+  border-left-color: #f59e0b;
+  color: #92400e;
+}
+
+.player-suplente:hover {
+  background: rgba(245, 158, 11, 0.15);
+}
+
+.player-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.player-titular .player-number {
+  background: #22c55e;
+}
+
+.player-suplente .player-number {
+  background: #f59e0b;
+}
+
+/* Formularios mejorados */
+.input-football {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 16px; /* Evita zoom en iOS */
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  transition: var(--transition-base);
+  color: #374151;
+}
+
+.input-football:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  background: white;
+}
+
+.input-football::placeholder {
+  color: #9ca3af;
+}
+
+/* Sugerencias dropdown */
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 0.25rem;
+}
+
+.suggestion-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: #f8fafc;
+  color: #1f2937;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive optimizations */
+@media (max-width: 640px) {
+  .glass-card {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  .btn-football {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+
+  .player-card {
+    padding: 0.75rem;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hover-lift:hover {
+    transform: none;
+  }
+
+  .player-card:hover {
+    transform: none;
+  }
+
+  .btn-football:hover {
+    transform: none;
+  }
+
+  .btn-football,
+  .suggestion-item,
+  .player-card {
+    min-height: 44px;
+  }
 }

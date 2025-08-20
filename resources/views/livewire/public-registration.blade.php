@@ -76,7 +76,7 @@
                             <div class="space-y-3">
                                 <div class="flex items-center gap-3 text-blue-100">
                                     <span class="text-xl">🕐</span>
-                                    <span class="font-medium">Martes - Jueves 6:00 PM</span>
+                                    <span class="font-medium">Martes - Jueves 9:00 PM</span>
                                 </div>
 
                                 <div class="flex items-center gap-3 text-blue-100">

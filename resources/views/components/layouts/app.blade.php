@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#1e3a8a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -119,6 +120,17 @@
     <!-- Livewire Scripts -->
     @livewireScripts
 
+    <!-- CSRF Token Configuration for Livewire -->
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            // Configure CSRF token for all Livewire requests
+            const token = document.querySelector('meta[name="csrf-token"]');
+            if (token) {
+                window.livewire_token = token.getAttribute('content');
+            }
+        });
+    </script>
+
     <!-- App initialization script -->
     <script>
         // Hide loading overlay when page is ready
@@ -141,18 +153,18 @@
             }
         });
 
-        // Service Worker registration for offline support
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch(function(registrationError) {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
+        // Service Worker registration disabled temporarily
+        // if ('serviceWorker' in navigator) {
+        //     window.addEventListener('load', function() {
+        //         navigator.serviceWorker.register('/sw.js')
+        //             .then(function(registration) {
+        //                 console.log('SW registered: ', registration);
+        //             })
+        //             .catch(function(registrationError) {
+        //                 console.log('SW registration failed: ', registrationError);
+        //             });
+        //     });
+        // }
 
         // PWA install prompt
         let deferredPrompt;

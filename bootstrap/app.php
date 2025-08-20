@@ -11,7 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Simple CSRF exclusions for Laravel 12
+        $middleware->validateCsrfTokens(except: [
+            'livewire/update',
+            'livewire/upload-file',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
