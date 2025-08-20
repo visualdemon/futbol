@@ -24,3 +24,12 @@ Homestead.yaml
 Thumbs.db
 /legacy
 
+# Archivos de producción adicionales
+*.backup
+/bootstrap/cache/*.php
+/storage/logs/*.log
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+composer.phar
+
